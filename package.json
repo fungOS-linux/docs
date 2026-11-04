@@ -1,0 +1,22 @@
+{
+  "name": "@fungos/docs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "DOCS_AUDIENCE=public vite build",
+    "build:internal": "DOCS_AUDIENCE=internal vite build",
+    "preview": "vite preview",
+    "format": "prettier --write src index.html"
+  },
+  "dependencies": {
+    "@ajmwagar/docs-kit": "github:ajmwagar/docs-kit",
+    "highlight.js": "^11.11.1",
+    "marked": "^16.4.1"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "vite": "^8.3.0"
+  }
+}

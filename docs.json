@@ -1,0 +1,156 @@
+{
+  "name": "fungOS",
+  "description": "Linux nodes, mesh identity, Canvas presentation, content VFS, and the Soil WASM runtime.",
+  "navigation": [
+    {
+      "group": "Start here",
+      "audience": "public",
+      "pages": [
+        {
+          "title": "Introduction",
+          "slug": "introduction",
+          "file": "content/index.md",
+          "description": "What fungOS is, what runs today, and where the pieces meet."
+        },
+        {
+          "title": "Architecture",
+          "slug": "architecture",
+          "file": "content/architecture.md",
+          "description": "The node, identity, transport, presentation, content, and app layers."
+        },
+        {
+          "title": "Install and build",
+          "slug": "install",
+          "file": "content/install.md",
+          "description": "Build the base rootfs, install the runtime pieces, and boot a node."
+        }
+      ]
+    },
+    {
+      "group": "Platform",
+      "audience": "public",
+      "pages": [
+        {
+          "title": "Node profiles",
+          "slug": "node-profiles",
+          "file": "content/node-profiles.md",
+          "description": "Base, edge, headless-edge, cloud, and the machine roles they serve."
+        },
+        {
+          "title": "Mycelium",
+          "slug": "mycelium",
+          "file": "content/mycelium.md",
+          "description": "Identity, enrollment, topology, access, and trusted updates."
+        },
+        {
+          "title": "Unibus",
+          "slug": "unibus",
+          "file": "content/unibus.md",
+          "description": "The authenticated application bus and its producer/capability model."
+        },
+        {
+          "title": "Canvas",
+          "slug": "canvas",
+          "file": "content/canvas.md",
+          "description": "The cross-platform presentation owner: windows, layout, focus, and input."
+        },
+        {
+          "title": "VFS and content",
+          "slug": "vfs",
+          "file": "content/vfs.md",
+          "description": "ContentId, local-first namespaces, pull-through caches, and native mounts."
+        },
+        {
+          "title": "Security and updates",
+          "slug": "security",
+          "file": "content/security.md",
+          "description": "No ambient authority, signed releases, and honest refusal states."
+        },
+        {
+          "title": "Operations",
+          "slug": "operations",
+          "file": "content/operations.md",
+          "description": "Deploying full nodes, caches, and Unibus content providers."
+        }
+      ]
+    },
+    {
+      "group": "Soil",
+      "audience": "public",
+      "pages": [
+        {
+          "title": "Soil overview",
+          "slug": "soil",
+          "file": "content/soil/index.md",
+          "description": "The WASM runtime for fungOS apps, its status, and its boundaries."
+        },
+        {
+          "title": "Spore model",
+          "slug": "soil-spores",
+          "file": "content/soil/spores.md",
+          "description": "Signed manifests, capability linking, lifecycle, and honest failure."
+        },
+        {
+          "title": "Capability contracts",
+          "slug": "soil-capabilities",
+          "file": "content/soil/capabilities.md",
+          "description": "The WIT packages a Spore can import and the ones it cannot."
+        },
+        {
+          "title": "Canvas and input",
+          "slug": "soil-canvas",
+          "file": "content/soil/canvas.md",
+          "description": "Host-owned surfaces, normalized input, and the no-callback rule."
+        },
+        {
+          "title": "WebGPU",
+          "slug": "soil-webgpu",
+          "file": "content/soil/webgpu.md",
+          "description": "Standard wasi:webgpu compute and render, plus Canvas frame handoff."
+        },
+        {
+          "title": "Process and audio",
+          "slug": "soil-process",
+          "file": "content/soil/process-audio.md",
+          "description": "Threaded Wasm, cpal host callbacks, and bounded PCM sinks."
+        },
+        {
+          "title": "VFS and index",
+          "slug": "soil-vfs",
+          "file": "content/soil/vfs-index.md",
+          "description": "Native fast file browsing over soil:vfs and soil:index."
+        },
+        {
+          "title": "SDK",
+          "slug": "soil-sdk",
+          "file": "content/soil/sdk.md",
+          "description": "The guest-side umbrella and how a Spore consumes capabilities."
+        }
+      ]
+    },
+    {
+      "group": "Development",
+      "audience": "public",
+      "pages": [
+        {
+          "title": "Repository map",
+          "slug": "repos",
+          "file": "content/development/repos.md",
+          "description": "Which repository owns which boundary."
+        },
+        {
+          "title": "Build and test",
+          "slug": "build",
+          "file": "content/development/build.md",
+          "description": "The local gates for the runtime, host adapters, and docs."
+        },
+        {
+          "title": "Roadmap and status",
+          "slug": "roadmap",
+          "file": "content/roadmap.md",
+          "description": "What is working, what is next, and what is deliberately deferred."
+        }
+      ]
+    }
+  ]
+}
