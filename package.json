@@ -11,7 +11,7 @@
     "format": "prettier --write src index.html"
   },
   "dependencies": {
-    "@ajmwagar/docs-kit": "github:ajmwagar/docs-kit",
+    "@ajmwagar/docs-kit": "git+https://github.com/ajmwagar/docs-kit.git",
     "highlight.js": "^11.11.1",
     "marked": "^16.4.1"
   },
