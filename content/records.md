@@ -101,3 +101,17 @@ peer transport.
 
 The design and the book/ticket boundary are in
 [the records repository](https://github.com/fungOS-linux/records).
+
+## Browser inspector
+
+`soil-records-web` serves a read-only contact list and detail view through the
+`soil:records` host adapter:
+
+```sh
+cargo run -p soil-records-host --bin soil-records-web -- \
+  --book personal/avery/contacts --collection contact
+```
+
+Open <http://127.0.0.1:8787/>. It supports search, labels, raw vCard detail,
+revision/origin metadata, and `.vcf` export. It is an inspection tool over the
+same book the sync providers use, not a new store.
