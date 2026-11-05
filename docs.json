@@ -109,6 +109,12 @@
           "description": "Host-composed files, records, and action discovery without ambient authority."
         },
         {
+          "title": "Shell and FUSE",
+          "slug": "soil-shell",
+          "file": "content/soil/shell.md",
+          "description": "Mount the VFS, run a shell, and keep rm as namespace unlink rather than blob destruction."
+        },
+        {
           "title": "Canvas and input",
           "slug": "soil-canvas",
           "file": "content/soil/canvas.md",

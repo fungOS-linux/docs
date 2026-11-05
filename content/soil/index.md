@@ -39,6 +39,11 @@
     <strong>One local discovery surface</strong>
     <span><code>soil:search</code> composes files, records, and future app actions without widening access.</span>
   </a>
+  <a class="doc-card" href="#/soil-shell">
+    <span class="card-kicker">Shell</span>
+    <strong>Files you can actually use</strong>
+    <span><code>soil shell</code> mounts the VFS through FUSE, with deletion as namespace unlink and blobs retained.</span>
+  </a>
   <a class="doc-card" href="#/soil-process">
     <span class="card-kicker">Process</span>
     <strong>Threads and bounded audio</strong>
