@@ -13,6 +13,7 @@ Canonical WIT lives in [`soil/wit`](https://github.com/fungOS-linux/soil/tree/ma
 | `soil:appdata@1` | `soil:appdata` | WIT + guest SDK; host next |
 | `soil:records@0.1` | `soil:records` | WIT + generic host + guest SDK |
 | `soil:search@0.1` | `soil:search` | WIT + files/records composition |
+| `soil:http@0.1` | `soil:http` | WIT + bounded host + direct transport proof |
 | `soil:ble@1` | `soil:ble.*` | WIT + real host + COLMI ring Spore |
 | `wasi:webgpu@0.3.0-rc.2` | upstream `wasi:webgpu` | host + compute/render fixtures |
 | `wasi:audio@0.1.0` | link `wasi:audio` | draft WIT + cpal host |
@@ -57,6 +58,31 @@ Current status:
 
 See [Records and PIM](#/records) for the native book model.
 
+## Bounded HTTP
+
+`soil:http` is the host-mediated fetch capability. A Spore names an absolute
+URL, allowlisted headers, an opaque credential handle, and body/time budgets.
+The host owns the origin allowlist, TLS, redirects, transport route, and
+credential material. The guest never sees a socket, DNS API, proxy setting, or
+secret.
+
+The direct transport uses `ureq` inside the host. A WebAssembly guest cannot use
+`ureq`, `hyper`, or native `reqwest` directly: `wasm32-wasip2` has no ambient
+`socket` API, and reqwest's wasm path delegates to browser `fetch`. The
+WebGPU/cpal pattern is the correct one — WIT at the boundary, transport in the
+host.
+
+The host transport is a trait. A direct/DNS transport is implemented first; an
+Iroh/Mycelium transport can implement the same trait. A router can prefer:
+
+1. an explicit Mycelium/Iroh service endpoint
+2. a healthy Mycelium peer path
+3. direct DNS/TLS as policy-permitted fallback
+
+The Spore never selects the route. Mycelium owns peer identity and health; Iroh
+is a path. A failed route is a typed error, not a silent downgrade. Credentials
+are resolved by a host `CredentialProvider`; Geode is the intended adapter.
+
 ## Read-only filesystem
 
 `soil:vfs`:
@@ -94,7 +120,7 @@ The GUI renders state. It does not receive synthetic clicks or raw OS events. A 
 
 ## What is not in v1
 
-- raw sockets, DNS, arbitrary HTTP
+- raw sockets, ambient DNS, or arbitrary HTTP; use bounded `soil:http`
 - filesystem paths or directory traversal
 - raw keycodes or display enumeration
 - process spawning

@@ -63,10 +63,11 @@ host feed poller -> records book -> soil:records -> Feeds Spore
 settings         -> soil:appdata
 ```
 
-The Spore imports only `soil:appdata` and `soil:records`. It has no network
-capability, so it cannot scrape an arbitrary URL. Host-side `records import-rss`
-or `records sync-feeds` writes `fungos.feeds/item@1`; the Spore reads a
-host-mapped collection and keeps its private settings in synced AppData.
+The first reader imports only `soil:appdata` and `soil:records`. The scraper
+variant adds `soil:http`: it can request a user-configured feed URL, but the host
+still owns the origin allowlist, TLS, budgets, transport route, and credential
+handle. It never gets a socket, DNS API, or secret bytes. Host-side
+`records import-rss` remains the offline path.
 
 If human-editable settings are wanted, the host can project the AppData key to
 a git-backed dotfile under `~/.config/fungos/soil/<spore-id>/`. That projection
