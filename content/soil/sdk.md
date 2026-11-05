@@ -6,9 +6,12 @@ The guest SDK is an umbrella over capability-specific crates. It deliberately do
 
 ```text
 soil-sdk
-  feature audio -> soil-sdk-audio
-  future vfs    -> soil-sdk-vfs
-  future index  -> soil-sdk-index
+  feature audio   -> soil-sdk-audio
+  feature appdata -> soil-sdk-appdata
+  soil-sdk-codec  -> serde JsonCodec
+  future vfs      -> soil-sdk-vfs
+  future index    -> soil-sdk-index
+  future records  -> soil-sdk-records
 ```
 
 A capability crate generates bindings from the canonical WIT and wraps the raw host calls in a small guest-side API.
@@ -32,6 +35,26 @@ cargo clippy --target wasm32-wasip2 -- -D warnings
 ```
 
 A Spore manifest must declare exactly the capabilities it imports. The host does not link an unused capability because a world happened to include it.
+
+## AppData
+
+```rust
+use soil_sdk::appdata::synced::Json;
+
+#[derive(Default, serde::Serialize, serde::Deserialize)]
+struct Settings {
+    theme: String,
+}
+
+let settings = Json::<Settings>::open("settings")?;
+let mut value = settings.load_or_default()?;
+value.theme = "dark".into();
+settings.save(&value)?;
+```
+
+`local::Json<T>` is device-only. `synced::Json<T>` is replicated and encrypted
+by the host. Use `load_with_meta` / `save_if_generation` when a
+read-modify-write needs conflict detection.
 
 ## Reading a file
 

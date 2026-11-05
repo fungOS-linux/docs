@@ -10,9 +10,23 @@ Canonical WIT lives in [`soil/wit`](https://github.com/fungOS-linux/soil/tree/ma
 | `soil:view@1` | `soil:view` | WIT + Viewer state machine |
 | `soil:time@1` | `soil:time` | WIT |
 | `soil:storage@1` | `soil:storage.read` / `.write` | WIT |
+| `soil:appdata@1` | `soil:appdata` | WIT + guest SDK; host next |
 | `soil:ble@1` | `soil:ble.*` | WIT + real host + COLMI ring Spore |
 | `wasi:webgpu@0.3.0-rc.2` | upstream `wasi:webgpu` | host + compute/render fixtures |
 | `wasi:audio@0.1.0` | link `wasi:audio` | draft WIT + cpal host |
+
+## Private app storage
+
+`soil:appdata` is separate from `soil:vfs` and `soil:storage`:
+
+- `local` is device-only
+- `synced` is per-app, per-user, encrypted, replicated
+- not indexed, shareable, or cross-app referenceable
+- quota-bounded
+- opaque keys and bytes; no host paths or app ids
+
+Use records for durable, searchable, shareable data. Use VFS/storage for large
+assets.
 
 ## Read-only filesystem
 
