@@ -4,8 +4,8 @@
 macOS address book, stores namespaced contact records, keeps a per-device op log,
 and syncs between devices.
 
-**Status:** working first slice. SSH is the current transport; Unibus and
-encryption are next.
+**Status:** working first slice. Unibus is the primary transport; SSH remains a
+bootstrap/fallback. Encryption and device key wrapping are next.
 
 ## Current shape
 
@@ -14,7 +14,7 @@ SQLite projection   fast local list/search
 per-device op log   durable, idempotent sync
 book                ownership boundary
 schema              namespaced record meaning
-transport           SSH today, Unibus next
+transport           Unibus provider, SSH fallback
 ```
 
 ```text
@@ -34,24 +34,44 @@ records --root ~/.local/share/fungos/records import-vcf \
   /tmp/contacts.vcf
 ```
 
-## Sync
+## Unibus sync
+
+Providers run on studio and agora-one:
 
 ```sh
-records --root ~/.local/share/fungos/records sync \
+records --root ~/.local/share/fungos/records serve \
+  --config ~/.config/unibus/records-studio.json
+```
+
+A device syncs:
+
+```sh
+records --root ~/.local/share/fungos/records unibus-sync \
   --book personal/avery/contacts \
-  --ssh studio
+  --config ~/.config/unibus/records-macbook.json \
+  --peer records.studio
+```
+
+Protocol kinds:
+
+```text
+records.sync.pull.v1
+records.sync.ops.v1
+records.sync.push.v1
+records.sync.ack.v1
+records.sync.error.v1
 ```
 
 Each side publishes a vector, then pulls and pushes missing ops. `op_id` is a
 BLAKE3 digest, and `(book_id, device_id, seq)` is unique, so re-delivery is a
-no-op.
+no-op. SSH sync remains available as a fallback.
 
 ## What is live
 
 - 591 imported contact ops
 - 589 unique contact records after collapsing duplicate cards
-- MacBook ↔ studio ↔ agora-one sync verified
-- bidirectional temp-book sync verified
+- MacBook ↔ studio ↔ agora-one sync verified over SSH and Unibus
+- bidirectional Unibus temp-book transfer verified
 
 ## Boundaries
 
@@ -59,7 +79,7 @@ no-op.
 - no cross-book links yet
 - no team/company grants yet
 - no share projections or tickets yet
-- no encryption or device key wrapping yet
+- no encryption or device key wrapping yet; Unibus frames are authenticated but not E2EE
 - no CardDAV yet
 - no calendar yet
 

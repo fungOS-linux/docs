@@ -14,11 +14,11 @@ This page is deliberately conservative. "Implemented" means there is code and a 
 - Soil threaded cpal audio
 - Soil `soil:vfs` + `soil:index` host adapter
 - docs-kit shared documentation shell
-- `fungos-records` contacts import, op log, and SSH sync between MacBook, studio, and agora-one
+- `fungos-records` contacts import, op log, Unibus sync providers on studio/agora-one, and SSH fallback
 
 ## Next
 
-1. **Records Unibus + encryption.** Replace SSH with an Unibus sync provider, add book-key wrapping, and introduce team/company books.
+1. **Records encryption + sharing.** Add book-key wrapping, team/company books, and explicit share projections.
 2. **File-browser Spore.** Build the read-only browser over `soil:vfs`/`soil:index`: browse, substring/fuzzy search, multi-select, preview ranges, open in Canvas.
 3. **Plan/action layer.** Compile prompts into inspectable plans: archive selection, send to a reviewed target, preview, approve, execute, receipt.
 4. **Index extraction.** FTS5/trigram search, OCR, and an optional embedding backend. Semantic search stays `unsupported` until then.
