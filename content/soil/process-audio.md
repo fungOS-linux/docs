@@ -41,3 +41,30 @@ cargo test -p soil-process --test cpal_tone -- --ignored --nocapture
 ```
 
 The verified result is a real cpal playback with zero steady-state underruns and a callback running on a guest thread.
+
+
+## Isochrone output
+
+`wasi:audio` can route PCM to an Isochrone UDP sink instead of a local device.
+The guest still writes interleaved frames; the host packetizes 48 kHz stereo L24
+and sends RTP.
+
+```sh
+wasi-audio COMPONENT.wasm \
+  --isochrone-destination 192.168.20.13:50040
+```
+
+Each source gets its own destination port. The designated sink mixes them:
+
+```text
+Studio Soil  -> home-pi:50040
+Neo Soil     -> home-pi:50041
+Rsspotify    -> local sink input
+                    |
+             isochrone receive-mix
+                    |
+              hardware_dmixer
+```
+
+The final destination is a Mycelium-hosted service identity, not a guest
+device choice. Soil does not mix in the guest or claim a local output device.
