@@ -75,3 +75,21 @@ is host-owned: the Spore still never receives a path, one side must be the
 authority, and writes should use generation checks. Lua overrides follow the
 same rule: reviewed package assets or an explicit host projection, never an
 ambient filesystem grant.
+
+## Peer sync opt-in
+
+A Spore does not import Unibus, Iroh, or a peer transport. It imports
+`soil:records` (and later `soil:appdata` or a Geode-backed credential handle).
+The host decides which records book the collection maps to, whether that book
+syncs, and which authenticated peer session carries it.
+
+```text
+Spore: soil:records collection + schema
+Host:  book, peer session, grants, Geode credential handle, route
+```
+
+`records.sync.*` and `geode.sync.*` are message kinds on one shared
+`unibus/peer/1` session. Mycelium supplies discovery, identity, grants, and
+revocation; Iroh supplies encrypted reachability. Spores never name an endpoint,
+DNS address, Iroh key, token, or transport. SSH/TCP remains an explicit host
+fallback, not a Spore option.
