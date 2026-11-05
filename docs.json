@@ -115,6 +115,12 @@
           "description": "Mount the VFS, run a shell, and keep rm as namespace unlink rather than blob destruction."
         },
         {
+          "title": "Mush",
+          "slug": "soil-mush",
+          "file": "content/soil/mush.md",
+          "description": "The sandboxed VFS-only shell: no host PATH, subprocesses, or ambient filesystem."
+        },
+        {
           "title": "Canvas and input",
           "slug": "soil-canvas",
           "file": "content/soil/canvas.md",

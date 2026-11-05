@@ -44,6 +44,11 @@
     <strong>Files you can actually use</strong>
     <span><code>soil shell</code> mounts the VFS through FUSE, with deletion as namespace unlink and blobs retained.</span>
   </a>
+  <a class="doc-card" href="#/soil-mush">
+    <span class="card-kicker">Mush</span>
+    <strong>The sandboxed shell</strong>
+    <span>No host PATH, no subprocesses, workspace-relative paths, and deletion that keeps content and history.</span>
+  </a>
   <a class="doc-card" href="#/soil-process">
     <span class="card-kicker">Process</span>
     <strong>Threads and bounded audio</strong>
