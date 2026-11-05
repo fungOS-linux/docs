@@ -59,6 +59,22 @@ macOS uses macFUSE; Linux uses FUSE3. The mount is another view of the same auth
 - no host paths, directory traversal, or provider selection
 - no sparse/page-granular reads yet
 - semantic search returns `unsupported` until an embedding backend is linked
+- `regex` search is bounded and host-owned
+- Microsoft `tgrep` can back regex file search over an explicit root or VFS mount
+
+## Code search
+
+`soil-grep` searches the derived index directly:
+
+```sh
+soil-grep --root ~/fungos-node --mode regex 'fn\s+main'
+soil-grep --root ~/fungos-node --mode fuzzy 'contcts'
+```
+
+Common source media types and code extensions are indexed even when stored as
+`application/octet-stream`. The global search host can also use Microsoft
+`tgrep` over a native checkout or a `fungos-vfs` FUSE mount; the host owns the
+binary and root.
 
 ## Browser inspector
 

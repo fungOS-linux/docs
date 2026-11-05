@@ -27,6 +27,7 @@ A query carries `text`, `kinds`, `mode`, `offset`, and `limit`. A hit carries
 and optional `updated-at-ms`.
 
 Kinds are `file`, `record-entry`, `repository`, and the reserved `action`.
+Modes are `substring`, `fuzzy`, `full-text`, `semantic`, and `regex`.
 
 ## Host composition
 
@@ -36,6 +37,7 @@ Kinds are `file`, `record-entry`, `repository`, and the reserved `action`.
   semantic vectors
 - substring search over an explicit allowlist of `fungos-records` books
 - bounded Git discovery under host-granted roots, with credential-stripped origins
+- optional Microsoft `tgrep` regex search over an explicit root or VFS mount
 
 Results are merged by score and title, then paginated. `refresh` rebuilds the
 VFS index and advances the generation.
