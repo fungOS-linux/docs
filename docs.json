@@ -103,6 +103,12 @@
           "description": "The WIT packages a Spore can import and the ones it cannot."
         },
         {
+          "title": "Global search",
+          "slug": "soil-search",
+          "file": "content/soil/search.md",
+          "description": "Host-composed files, records, and action discovery without ambient authority."
+        },
+        {
           "title": "Canvas and input",
           "slug": "soil-canvas",
           "file": "content/soil/canvas.md",

@@ -12,6 +12,7 @@ Canonical WIT lives in [`soil/wit`](https://github.com/fungOS-linux/soil/tree/ma
 | `soil:storage@1` | `soil:storage.read` / `.write` | WIT |
 | `soil:appdata@1` | `soil:appdata` | WIT + guest SDK; host next |
 | `soil:records@0.1` | `soil:records` | WIT + generic host + guest SDK |
+| `soil:search@0.1` | `soil:search` | WIT + files/records composition |
 | `soil:ble@1` | `soil:ble.*` | WIT + real host + COLMI ring Spore |
 | `wasi:webgpu@0.3.0-rc.2` | upstream `wasi:webgpu` | host + compute/render fixtures |
 | `wasi:audio@0.1.0` | link `wasi:audio` | draft WIT + cpal host |
@@ -101,4 +102,4 @@ The GUI renders state. It does not receive synthetic clicks or raw OS events. A 
 - secrets in Wasm memory
 - a global application-specific package such as Isochrone
 
-See [VFS and index](#/soil-vfs) and [Canvas and input](#/soil-canvas).
+See [VFS and index](#/soil-vfs), [Global search](#/soil-search), and [Canvas and input](#/soil-canvas).

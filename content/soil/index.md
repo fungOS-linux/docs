@@ -34,6 +34,11 @@
     <strong>Durable structured state</strong>
     <span><code>soil:records</code> gives Spores book-scoped entries, tombstones, a change feed, and revision/origin merge without a second database.</span>
   </a>
+  <a class="doc-card" href="#/soil-search">
+    <span class="card-kicker">Search</span>
+    <strong>One local discovery surface</strong>
+    <span><code>soil:search</code> composes files, records, and future app actions without widening access.</span>
+  </a>
   <a class="doc-card" href="#/soil-process">
     <span class="card-kicker">Process</span>
     <strong>Threads and bounded audio</strong>
