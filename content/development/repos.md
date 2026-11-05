@@ -8,6 +8,7 @@ Each repository owns one boundary. The docs site is a view over them, not a seco
 | [`fungOS-linux/soil`](https://github.com/fungOS-linux/soil) | WIT contracts, Soil hosts, Spores, Canvas input/runtime adapters, VFS/index host adapter |
 | [`fungOS-linux/unibus`](https://github.com/fungOS-linux/unibus) | Authenticated application bus, routes, TCP/QUIC/Iroh peer transport |
 | [`fungOS-linux/fungos-vfs`](https://github.com/fungOS-linux/fungos-vfs) | Local-first VFS, content identity, pull-through cache, FUSE mount, Unibus content lane |
+| [`fungOS-linux/records`](https://github.com/fungOS-linux/records) | PIM records, books, per-device op log, vCard import, device sync |
 | [`fungOS-linux/mycelium`](https://github.com/fungOS-linux/mycelium) | Identity, enrollment, topology, access, trusted updates |
 | [`FuturePresentLabs/transmog`](https://github.com/FuturePresentLabs/transmog) | Native CAD interoperability SDK and its docs |
 | [`ajmwagar/docs-kit`](https://github.com/ajmwagar/docs-kit) | Reusable Mintlify-style Vite documentation shell |

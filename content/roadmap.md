@@ -14,16 +14,18 @@ This page is deliberately conservative. "Implemented" means there is code and a 
 - Soil threaded cpal audio
 - Soil `soil:vfs` + `soil:index` host adapter
 - docs-kit shared documentation shell
+- `fungos-records` contacts import, op log, and SSH sync between MacBook, studio, and agora-one
 
 ## Next
 
-1. **File-browser Spore.** Build the read-only browser over `soil:vfs`/`soil:index`: browse, substring/fuzzy search, multi-select, preview ranges, open in Canvas.
-2. **Plan/action layer.** Compile prompts into inspectable plans: archive selection, send to a reviewed target, preview, approve, execute, receipt.
-3. **Index extraction.** FTS5/trigram search, OCR, and an optional embedding backend. Semantic search stays `unsupported` until then.
-4. **Sparse/page-granular VFS reads.** The current FUSE write path is whole-file on close.
-5. **File Provider / Cloud Files adapter.** macFUSE works as a native mount; a signed File Provider extension is the next macOS-native path.
-6. **Unibus multi-provider policy.** Provider health, fallback order, pin-on-open, and lease-aware eviction.
-7. **Spore Store.** Signed publish/resolve/revoke by CID + target.
+1. **Records Unibus + encryption.** Replace SSH with an Unibus sync provider, add book-key wrapping, and introduce team/company books.
+2. **File-browser Spore.** Build the read-only browser over `soil:vfs`/`soil:index`: browse, substring/fuzzy search, multi-select, preview ranges, open in Canvas.
+3. **Plan/action layer.** Compile prompts into inspectable plans: archive selection, send to a reviewed target, preview, approve, execute, receipt.
+4. **Index extraction.** FTS5/trigram search, OCR, and an optional embedding backend. Semantic search stays `unsupported` until then.
+5. **Sparse/page-granular VFS reads.** The current FUSE write path is whole-file on close.
+6. **File Provider / Cloud Files adapter.** macFUSE works as a native mount; a signed File Provider extension is the next macOS-native path.
+7. **Unibus multi-provider policy.** Provider health, fallback order, pin-on-open, and lease-aware eviction.
+8. **Spore Store.** Signed publish/resolve/revoke by CID + target.
 
 ## Deferred
 

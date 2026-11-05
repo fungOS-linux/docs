@@ -55,6 +55,12 @@
           "description": "The cross-platform presentation owner: windows, layout, focus, and input."
         },
         {
+          "title": "Records and PIM",
+          "slug": "records",
+          "file": "content/records.md",
+          "description": "Local-first contacts, books, op logs, and device sync."
+        },
+        {
           "title": "VFS and content",
           "slug": "vfs",
           "file": "content/vfs.md",
