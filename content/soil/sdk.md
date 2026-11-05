@@ -8,10 +8,10 @@ The guest SDK is an umbrella over capability-specific crates. It deliberately do
 soil-sdk
   feature audio   -> soil-sdk-audio
   feature appdata -> soil-sdk-appdata
+  feature records -> soil-sdk-records
   soil-sdk-codec  -> serde JsonCodec
   future vfs      -> soil-sdk-vfs
   future index    -> soil-sdk-index
-  future records  -> soil-sdk-records
 ```
 
 A capability crate generates bindings from the canonical WIT and wraps the raw host calls in a small guest-side API.
@@ -55,6 +55,34 @@ settings.save(&value)?;
 `local::Json<T>` is device-only. `synced::Json<T>` is replicated and encrypted
 by the host. Use `load_with_meta` / `save_if_generation` when a
 read-modify-write needs conflict detection.
+
+## Records
+
+```rust
+use soil_sdk::records::{Book, Record, TypedBook};
+
+let contacts = Book::new("contact");
+let page = contacts.scan(None, 50)?;
+
+for (contact, entry) in contacts.changes(None, 50)? {
+    if let Some(contact) = contact {
+        // live value
+    } else {
+        // tombstone; `entry.revision` and `entry.origin` remain
+    }
+}
+```
+
+A typed book implements `Record`:
+
+```rust
+impl soil_sdk::records::Record for Contact {
+    const COLLECTION: &'static str = "contact";
+    const SCHEMA: &'static str = "fungos.contacts/contact";
+}
+
+let contacts = TypedBook::<Contact>::open();
+```
 
 ## Reading a file
 

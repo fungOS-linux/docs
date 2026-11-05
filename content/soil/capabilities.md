@@ -11,7 +11,7 @@ Canonical WIT lives in [`soil/wit`](https://github.com/fungOS-linux/soil/tree/ma
 | `soil:time@1` | `soil:time` | WIT |
 | `soil:storage@1` | `soil:storage.read` / `.write` | WIT |
 | `soil:appdata@1` | `soil:appdata` | WIT + guest SDK; host next |
-| `soil:records@0.1` | `soil:records` | WIT + contacts host + guest SDK; sync path next |
+| `soil:records@0.1` | `soil:records` | WIT + generic host + guest SDK |
 | `soil:ble@1` | `soil:ble.*` | WIT + real host + COLMI ring Spore |
 | `wasi:webgpu@0.3.0-rc.2` | upstream `wasi:webgpu` | host + compute/render fixtures |
 | `wasi:audio@0.1.0` | link `wasi:audio` | draft WIT + cpal host |
