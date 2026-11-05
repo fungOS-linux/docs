@@ -73,6 +73,23 @@ no-op. SSH sync remains available as a fallback.
 - MacBook ↔ studio ↔ agora-one sync verified over SSH and Unibus
 - bidirectional Unibus temp-book transfer verified
 
+## Soil access
+
+A contacts Spore can use `soil:records` through `soil-sdk-records`:
+
+```rust
+use soil_sdk::records::{Book, Record, TypedBook};
+
+let contacts = Book::new("contact");
+let page = contacts.scan(None, 50)?;
+```
+
+The host adapter `soil-records-host` maps one
+`personal/avery/contacts` book to the `contact` collection. It supports
+`get`, `scan`, `upsert`, and `delete` with contact-body validation. The
+Spore-facing `changes`/`apply` path is still `unsupported`; native
+`records.sync.*` remains the sync path.
+
 ## Boundaries
 
 - one home book per record
