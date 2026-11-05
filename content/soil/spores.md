@@ -93,3 +93,9 @@ Host:  book, peer session, grants, Geode credential handle, route
 revocation; Iroh supplies encrypted reachability. Spores never name an endpoint,
 DNS address, Iroh key, token, or transport. SSH/TCP remains an explicit host
 fallback, not a Spore option.
+
+`crates/soil-sync-host` now accepts an Iroh listener, verifies sessions through
+the host-supplied `SessionConfig`, and routes records frames to
+`fungos-records`. Its test performs a real encrypted Iroh loopback sync. The
+production remaining input is the Mycelium/fpl-auth session verifier and
+issuer; the host deliberately refuses permissive JSON assertions.
