@@ -94,8 +94,15 @@ revocation; Iroh supplies encrypted reachability. Spores never name an endpoint,
 DNS address, Iroh key, token, or transport. SSH/TCP remains an explicit host
 fallback, not a Spore option.
 
-`crates/soil-sync-host` now accepts an Iroh listener, verifies sessions through
-the host-supplied `SessionConfig`, and routes records frames to
-`fungos-records`. Its test performs a real encrypted Iroh loopback sync. The
-production remaining input is the Mycelium/fpl-auth session verifier and
-issuer; the host deliberately refuses permissive JSON assertions.
+`crates/soil-sync-host` is the runnable host. There is no separate Unibus
+session issuer: its retained trust document is a Mycelium `AccessRecord` grant
+signed by the fleet's existing access key. The grant scope commits to both Iroh
+endpoint keys, both producers, audience, installation, exact message kinds, and
+payload bound. The host synthesizes short-lived session parameters from that
+signed permit and refuses copied or widened session JSON.
+
+The macbook/studio records path now syncs over `unibus/peer/1` on the tailnet.
+The old studio TCP records service and the macbook SSH forward are unloaded and
+retained as `.plist.disabled` rollback files. A real encrypted loopback test
+uses the same Mycelium-signed grant path and applies a contact record through
+the shared host.
