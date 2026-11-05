@@ -102,7 +102,12 @@ payload bound. The host synthesizes short-lived session parameters from that
 signed permit and refuses copied or widened session JSON.
 
 The macbook/studio records path now syncs over `unibus/peer/1` on the tailnet.
-The old studio TCP records service and the macbook SSH forward are unloaded and
-retained as `.plist.disabled` rollback files. A real encrypted loopback test
-uses the same Mycelium-signed grant path and applies a contact record through
-the shared host.
+Local writes commit first and enqueue a durable per-peer outbox row in the same
+SQLite transaction. A background dispatcher pushes pending ops over the shared
+session; failures stay queued with backoff, and periodic vector exchange
+repairs lost acks, partitions, and concurrent writes. Remote-applied ops are
+never echoed. The old studio TCP records service and the macbook SSH forward
+are unloaded and retained as `.plist.disabled` rollback files.
+
+A real encrypted loopback test uses the same Mycelium-signed grant path and
+applies a contact record through the shared host.
