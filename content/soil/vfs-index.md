@@ -59,3 +59,18 @@ macOS uses macFUSE; Linux uses FUSE3. The mount is another view of the same auth
 - no host paths, directory traversal, or provider selection
 - no sparse/page-granular reads yet
 - semantic search returns `unsupported` until an embedding backend is linked
+
+## Browser inspector
+
+`soil-vfs-web` serves a read-only file browser over `soil:vfs` and
+`soil:index`:
+
+```sh
+cargo run -p soil-vfs-host --bin soil-vfs-web -- \
+  --root ~/.local/share/fungos/vfs
+```
+
+Open <http://127.0.0.1:8788/>. It supports breadcrumbs, directory navigation,
+substring/fuzzy/full-text search, metadata, text and image previews, and bounded
+downloads. The browser never receives a host path; it only names workspace
+paths and range reads.

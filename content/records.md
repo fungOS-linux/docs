@@ -34,6 +34,23 @@ records --root ~/.local/share/fungos/records import-vcf \
   /tmp/contacts.vcf
 ```
 
+## Calendar import
+
+```sh
+records --root ~/.local/share/fungos/records import-ics \
+  --book personal/avery/calendar \
+  /tmp/calendar.ics
+
+records --root ~/.local/share/fungos/records export-ics \
+  --book personal/avery/calendar --output /tmp/calendar-out.ics
+```
+
+Events use schema `fungos.calendar/event@1`. The stored body includes the raw
+VEVENT and referenced VTIMEZONE blocks plus summary, description, location,
+start/end, all-day, organizer, attendees, categories, status, and RRULE. The
+first slice preserves recurrence rules but does not expand instances or resolve
+timezone transitions for presentation yet.
+
 ## Unibus sync
 
 Providers run on studio and agora-one:
@@ -97,7 +114,7 @@ peer transport.
 - no share projections or tickets yet
 - no encryption or device key wrapping yet; Unibus frames are authenticated but not E2EE
 - no CardDAV yet
-- no calendar yet
+- calendar import/export is a first slice; recurrence expansion and timezone-aware display are not done yet
 
 The design and the book/ticket boundary are in
 [the records repository](https://github.com/fungOS-linux/records).
@@ -115,3 +132,16 @@ cargo run -p soil-records-host --bin soil-records-web -- \
 Open <http://127.0.0.1:8787/>. It supports search, labels, raw vCard detail,
 revision/origin metadata, and `.vcf` export. It is an inspection tool over the
 same book the sync providers use, not a new store.
+
+Point it at a calendar book with the event schema to render the calendar view:
+
+```sh
+cargo run -p soil-records-host --bin soil-records-web -- \
+  --book personal/avery/calendar \
+  --collection event \
+  --schema fungos.calendar/event \
+  --listen 127.0.0.1:8789
+```
+
+The calendar view shows date chips, event detail, attendees, recurrence, raw
+VEVENT preview, and `.ics` export.
