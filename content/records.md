@@ -34,6 +34,36 @@ records --root ~/.local/share/fungos/records import-vcf \
   /tmp/contacts.vcf
 ```
 
+## RSS and Atom
+
+Feed ingest is host-side, because a Spore has no ambient network capability:
+
+```sh
+records --root ~/.local/share/fungos/records import-rss \
+  --book personal/avery/feeds \
+  --feed https://blog.rust-lang.org/feed.xml
+
+records --root ~/.local/share/fungos/records sync-feeds \
+  --config ~/.config/fungos/feeds.toml
+```
+
+```toml
+default_book = "personal/avery/feeds"
+
+[[feeds]]
+url = "https://blog.rust-lang.org/feed.xml"
+title = "Rust Blog"
+limit = 100
+```
+
+Items use `fungos.feeds/item@1` with title, link, summary, content, authors,
+categories, published/updated timestamps, feed title, feed URL, and a stable
+UID. They are ordinary records: sync, `soil:records`, and `soil:search` work
+unchanged. The feed list is host config and can live in a dotfiles repo. A
+reader Spore should use `soil:records` for items and `soil:appdata` for its
+private settings; fetching stays in the host or a future explicit network
+capability.
+
 ## Calendar import
 
 ```sh

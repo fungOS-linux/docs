@@ -52,3 +52,25 @@ The planned **Spore Store** publishes by CID and resolves by CID + target. Revoc
 - [Capability contracts](#/soil-capabilities)
 - [SDK](#/soil-sdk)
 - [Security and updates](#/security)
+
+## Feeds spike
+
+The feeds reader is a first spike of a Spore that owns presentation and policy
+but not transport:
+
+```text
+host feed poller -> records book -> soil:records -> Feeds Spore
+settings         -> soil:appdata
+```
+
+The Spore imports only `soil:appdata` and `soil:records`. It has no network
+capability, so it cannot scrape an arbitrary URL. Host-side `records import-rss`
+or `records sync-feeds` writes `fungos.feeds/item@1`; the Spore reads a
+host-mapped collection and keeps its private settings in synced AppData.
+
+If human-editable settings are wanted, the host can project the AppData key to
+a git-backed dotfile under `~/.config/fungos/soil/<spore-id>/`. That projection
+is host-owned: the Spore still never receives a path, one side must be the
+authority, and writes should use generation checks. Lua overrides follow the
+same rule: reviewed package assets or an explicit host projection, never an
+ambient filesystem grant.
