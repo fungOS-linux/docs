@@ -84,11 +84,10 @@ let contacts = Book::new("contact");
 let page = contacts.scan(None, 50)?;
 ```
 
-The host adapter `soil-records-host` maps one
-`personal/avery/contacts` book to the `contact` collection. It supports
-`get`, `scan`, `upsert`, and `delete` with contact-body validation. The
-Spore-facing `changes`/`apply` path is still `unsupported`; native
-`records.sync.*` remains the sync path.
+The host adapter `soil-records-host` maps one book to one collection. It supports
+`get`, `scan`, `upsert`, `delete`, `changes`, and revision/origin `apply`, with
+opt-in schema and contact-body validation. Native `records.sync.*` remains the
+peer transport.
 
 ## Boundaries
 
