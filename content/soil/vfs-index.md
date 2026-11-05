@@ -26,11 +26,21 @@
 - namespace listing and stat
 - bounded range reads
 - placeholder hydration through an optional `ContentHydrator`
-- a derived index with path/media/text
+- a persistent derived index in SQLite/FTS5
 - substring, fuzzy, and full-text search
+- exact path promotion in full-text results
 - explicit `unsupported` for semantic search
 
-The index is rebuilt from the current namespace. It can index small `text/*` files; OCR and embeddings are future derived fields.
+The index lives at `<vfs-root>/.fungos/soil-index.sqlite3`, or at an explicit
+path via `VfsHost::open_with_index`. It is a cache: delete it and the host
+rebuilds from the namespace. A source hash over VFS entries avoids rebuilding
+on every open.
+
+It indexes small `text/*` files today; OCR and embeddings are future derived
+fields. Vectors can be cached as `f32` BLOBs and ranked by brute-force cosine.
+When scale requires ANN, replace the backend behind `IndexBackend`; the
+`soil:index` contract does not change. Never sync this database: sync records
+and content, then rebuild locally.
 
 ## Desktop projection
 
