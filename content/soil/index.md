@@ -29,6 +29,11 @@
     <strong>Fast local browsing</strong>
     <span><code>soil:vfs</code> and <code>soil:index</code> expose namespaces and derived search without host paths.</span>
   </a>
+  <a class="doc-card" href="#/soil-capabilities">
+    <span class="card-kicker">Records</span>
+    <strong>Durable structured state</strong>
+    <span><code>soil:records</code> gives Spores book-scoped entries, tombstones, a change feed, and revision/origin merge without a second database.</span>
+  </a>
   <a class="doc-card" href="#/soil-process">
     <span class="card-kicker">Process</span>
     <strong>Threads and bounded audio</strong>
